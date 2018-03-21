@@ -1,6 +1,9 @@
 package work.doilux.cartesian_product;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Cartesian {
@@ -22,16 +25,6 @@ public class Cartesian {
     public Set<Object> resolve(Set<Object> s2) {
         Objects.requireNonNull(l);
         Objects.requireNonNull(s2);
-        if (l.size() == 0) return new LinkedHashSet<Object>() {{
-            add(new ArrayList<Object>() {{
-                addAll(s2);
-            }});
-        }};
-        if (s2.size() == 0) return new LinkedHashSet<Object>() {{
-            add(new ArrayList<Object>() {{
-                addAll(l);
-            }});
-        }};
         return l.stream().map(s -> resolveOne(s, s2)).flatMap(Collection::stream).collect(Collectors.toSet());
     }
 

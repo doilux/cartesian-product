@@ -56,14 +56,14 @@ class CartesianTest extends Specification {
     def "s1 is zero size"() {
         expect:
         Cartesian.of([] as Set).resolve(["a"] as Set) == [
-                ["a"]
+                []
         ] as Set
     }
 
     def "s2 is zero size"() {
         expect:
         Cartesian.of([1] as Set).resolve([] as Set) == [
-                [1]
+                []
         ] as Set
     }
 
