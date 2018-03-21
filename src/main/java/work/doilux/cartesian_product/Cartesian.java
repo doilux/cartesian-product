@@ -23,9 +23,9 @@ public class Cartesian {
         return l;
     }
 
-    public List<Object> multiply(List<Object> s2) {
+    public Cartesian multiply(List<Object> s2) {
         Objects.requireNonNull(s2);
-        return l.stream().map(s -> resolveOne(s, s2)).flatMap(Collection::stream).collect(Collectors.toList());
+        return new Cartesian(l.stream().map(s -> resolveOne(s, s2)).flatMap(Collection::stream).collect(Collectors.toList()));
     }
 
     private List<ArrayList<Object>> resolveOne(Object n, List<Object> s2) {

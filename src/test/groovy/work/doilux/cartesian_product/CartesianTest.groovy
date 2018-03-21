@@ -8,15 +8,15 @@ class CartesianTest extends Specification {
     def "multiple size"() {
         expect:
         def act1 = Cartesian.of([1, 2]) * ["a", "b"]
-        act1 == [
+        act1.toList() == [
                 [1, "a"],
                 [1, "b"],
                 [2, "a"],
                 [2, "b"]
         ]
 
-        def act2 = Cartesian.of(act1) * ["C", "D"]
-        act2 == [
+        def act2 = Cartesian.of(act1.toList()) * ["C", "D"]
+        act2.toList() == [
                 [1, "a", "C"],
                 [1, "a", "D"],
                 [1, "b", "C"],
@@ -30,7 +30,8 @@ class CartesianTest extends Specification {
 
     def "s1 is one size"() {
         expect:
-        Cartesian.of([1]) * ["a", "b"] == [
+        def act = Cartesian.of([1]) * ["a", "b"]
+        act.toList() == [
                 [1, "a"],
                 [1, "b"]
         ]
@@ -38,7 +39,8 @@ class CartesianTest extends Specification {
 
     def "s2 is one size"() {
         expect:
-        Cartesian.of([1, 2]) * ["a"] == [
+        def act = Cartesian.of([1, 2]) * ["a"]
+        act.toList() == [
                 [1, "a"],
                 [2, "a"]
         ]
@@ -46,24 +48,28 @@ class CartesianTest extends Specification {
 
     def "s1, s2 is one size"() {
         expect:
-        Cartesian.of([1]) * ["a"] == [
+        def act = Cartesian.of([1]) * ["a"]
+        act.toList() == [
                 [1, "a"]
         ]
     }
 
     def "s1 is zero size"() {
         expect:
-        Cartesian.of([]) * ["a"] == []
+        def act = Cartesian.of([]) * ["a"]
+        act.toList() == []
     }
 
     def "s2 is zero size"() {
         expect:
-        Cartesian.of([1]) * [] == []
+        def act = Cartesian.of([1]) * []
+        act.toList() == []
     }
 
     def "s1, s2 is zero size"() {
         expect:
-        Cartesian.of([]) * [] == []
+        def act = Cartesian.of([]) * []
+        act.toList() == []
     }
 
     def "s1 is null"() {
