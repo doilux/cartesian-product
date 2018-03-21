@@ -2,12 +2,12 @@ package work.doilux.cartesian_product
 
 import spock.lang.Specification
 
-class CartesianProductResolverTest extends Specification {
+class CartesianTest extends Specification {
 
 
     def "multiple size"() {
         expect:
-        def act1 = CartesianProductResolver.resolve([1, 2] as Set, ["a", "b"] as Set)
+        def act1 = Cartesian.of([1, 2] as Set).resolve(["a", "b"] as Set)
 
         act1 == [
                 [1, "a"],
@@ -16,7 +16,7 @@ class CartesianProductResolverTest extends Specification {
                 [2, "b"]
         ] as Set
 
-        def act2 = CartesianProductResolver.resolve(act1, ["C", "D"] as Set)
+        def act2 = Cartesian.of(act1).resolve(["C", "D"] as Set)
 
         act2 == [
                 [1, "a", "C"],
@@ -32,7 +32,7 @@ class CartesianProductResolverTest extends Specification {
 
     def "s1 is one size"() {
         expect:
-        CartesianProductResolver.resolve([1] as Set, ["a", "b"] as Set) == [
+        Cartesian.of([1] as Set).resolve(["a", "b"] as Set) == [
                 [1, "a"],
                 [1, "b"]
         ] as Set
@@ -40,7 +40,7 @@ class CartesianProductResolverTest extends Specification {
 
     def "s2 is one size"() {
         expect:
-        CartesianProductResolver.resolve([1, 2] as Set, ["a"] as Set) == [
+        Cartesian.of([1, 2] as Set).resolve(["a"] as Set) == [
                 [1, "a"],
                 [2, "a"]
         ] as Set
@@ -48,35 +48,35 @@ class CartesianProductResolverTest extends Specification {
 
     def "s1, s2 is one size"() {
         expect:
-        CartesianProductResolver.resolve([1] as Set, ["a"] as Set) == [
+        Cartesian.of([1] as Set).resolve(["a"] as Set) == [
                 [1, "a"]
         ] as Set
     }
 
     def "s1 is zero size"() {
         expect:
-        CartesianProductResolver.resolve([] as Set, ["a"] as Set) == [
+        Cartesian.of([] as Set).resolve(["a"] as Set) == [
                 ["a"]
         ] as Set
     }
 
     def "s2 is zero size"() {
         expect:
-        CartesianProductResolver.resolve([1] as Set, [] as Set) == [
+        Cartesian.of([1] as Set).resolve([] as Set) == [
                 [1]
         ] as Set
     }
 
     def "s1, s2 is zero size"() {
         expect:
-        CartesianProductResolver.resolve([] as Set, [] as Set) == [
+        Cartesian.of([] as Set).resolve([] as Set) == [
                 []
         ] as Set
     }
 
     def "s1 is null"() {
         when:
-        CartesianProductResolver.resolve(null, [] as Set)
+        Cartesian.of(null).resolve([] as Set)
 
         then:
         thrown(NullPointerException)
@@ -84,7 +84,7 @@ class CartesianProductResolverTest extends Specification {
 
     def "s2 is null"() {
         when:
-        CartesianProductResolver.resolve([] as Set, null)
+        Cartesian.of([] as Set).resolve(null)
 
         then:
         thrown(NullPointerException)
