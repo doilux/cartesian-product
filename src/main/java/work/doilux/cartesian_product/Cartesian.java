@@ -15,6 +15,7 @@ public class Cartesian {
     }
 
     public static Cartesian of(Set<Object> l) {
+        Objects.requireNonNull(l);
         return new Cartesian(l);
     }
 
@@ -23,7 +24,6 @@ public class Cartesian {
     }
 
     public Set<Object> resolve(Set<Object> s2) {
-        Objects.requireNonNull(l);
         Objects.requireNonNull(s2);
         return l.stream().map(s -> resolveOne(s, s2)).flatMap(Collection::stream).collect(Collectors.toSet());
     }
