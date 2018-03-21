@@ -4,7 +4,6 @@ import spock.lang.Specification
 
 class CartesianTest extends Specification {
 
-
     def "multiple size"() {
         expect:
         def act1 = Cartesian.of([1, 2]) * ["a", "b"]
@@ -15,7 +14,7 @@ class CartesianTest extends Specification {
                 [2, "b"]
         ]
 
-        def act2 = Cartesian.of(act1.toList()) * ["C", "D"]
+        def act2 = Cartesian.of([1, 2]) * ["a", "b"] * ["C", "D"]
         act2.toList() == [
                 [1, "a", "C"],
                 [1, "a", "D"],
@@ -26,6 +25,9 @@ class CartesianTest extends Specification {
                 [2, "b", "C"],
                 [2, "b", "D"]
         ]
+
+        def act3 = Cartesian.of([[1, "a"]]) * ["C"]
+        act3.toList() == [[[1, "a"], "C"]]
     }
 
     def "s1 is one size"() {
