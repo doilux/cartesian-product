@@ -5,7 +5,7 @@ This is Java class for express "One of Several" state.
 
 ## Example
 
-See [Any3Sample.groovy](https://github.com/doilux/any/blob/master/src/test/groovy/work/doilux/cartesian_product/CartesianProductResolverTest.groovy)
+See [CartesianProductResolverTest.groovy](https://github.com/doilux/cartesian-product/blob/master/src/test/groovy/work/doilux/cartesian_product/CartesianProductResolverTest.groovy)
 
 ## Usage
 
