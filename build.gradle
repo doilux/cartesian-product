@@ -21,7 +21,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository url: "file://${rootDir}/docs"
-            pom.version = '0.1.0'
+            pom.version = '1.0.0'
             pom.groupId = 'work.doilux'
             pom.artifactId = 'cartesian-product'
         }
